@@ -1,1 +1,1 @@
-
+require 'lastfm-stalker'
