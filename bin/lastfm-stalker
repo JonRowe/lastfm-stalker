@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 begin
-  require 'lastfm-stalker/command_line'
+  require 'lastfm-stalker'
+  Lastfm::Stalker::CommandLine.process ARGV
 rescue LoadError
   exit(1)
 end
