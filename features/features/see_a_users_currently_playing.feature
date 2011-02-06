@@ -9,7 +9,7 @@ Feature: See what a user is currently listening to
       """
         lastfm-stalker --user a_lfm_user
       """
-    Then the output should contain
+    Then the output should contain:
       """
         a_lfm_user is currently listening to "Trackname" by "Artist"
       """
