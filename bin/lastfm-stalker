@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'lastfm-stalker/command_line'
+rescue LoadError
+  exit(1)
+end
