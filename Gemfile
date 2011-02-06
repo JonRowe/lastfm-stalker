@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-# Specify your gem's dependencies in lastfm-stalker.gemspec
+# load dependencies from gemspec
 gemspec
