@@ -11,5 +11,5 @@ Feature: See what a user is currently listening to
       """
     Then the output should contain:
       """
-        a_lfm_user is currently listening to "Trackname" by "Artist"
+        a_lfm_user is currently listening to 'Trackname' by 'Artist'
       """
