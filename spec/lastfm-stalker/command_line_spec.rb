@@ -10,6 +10,7 @@ module Lastfm::Stalker
       Client.stub(:new).and_return client
       client.stub(:set_user)
       client.stub(:now_playing).and_return now_playing
+      $stdout.stub(:puts)
     end
 
     subject { CommandLine::process args }
