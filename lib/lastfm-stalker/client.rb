@@ -17,12 +17,13 @@ module Lastfm
 
       def fetch_current_track_for(user)
         response = Client.get self.class.base_uri, query(user: user, method: 'user.getrecenttracks')
-        Track.from_response response.parsed_response["recenttracks"]["track"].first
+        parsed_response = response.parsed_response
+        Track.from_response parsed_response["recenttracks"]["track"].first
       end
 
       def now_playing
         track = fetch_current_track_for user
-        "#{user} is currently listening to #{track.name} by #{track.artist}"
+        "#{user} is currently listening to '#{track.name}' by '#{track.artist}'"
       end
 
       private
