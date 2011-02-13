@@ -7,9 +7,9 @@ Feature: See what a user is currently listening to
     Given there is a last fm user "a_lfm_user" currently listening to "Trackname" by "Artist"
     When I run
       """
-        lastfm-stalker --user a_lfm_user
+      lastfm-stalker --user a_lfm_user
       """
     Then the output should contain:
       """
-        a_lfm_user is currently listening to 'Trackname' by 'Artist'
+      a_lfm_user is currently listening to 'Trackname' by 'Artist'
       """
