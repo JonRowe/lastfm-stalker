@@ -15,10 +15,20 @@ module Lastfm
         @user = value
       end
 
-      def now_playing
-        query = { user: user, format: 'json', api_key: self.api_key, method: 'user.getrecenttracks' }
-        Client.get self.class.base_uri, query: query
+      def fetch_current_track_for(user)
+        response = Client.get self.class.base_uri, query(user: user, method: 'user.getrecenttracks')
+        Track.from_response response.parsed_response["recenttracks"]["track"].first
       end
+
+      def now_playing
+        track = fetch_current_track_for user
+        "#{user} is currently listening to #{track.name} by #{track.artist}"
+      end
+
+      private
+        def query(params)
+          { query: { format: 'json', api_key: self.api_key }.merge(params) }
+        end
     end
   end
 end
