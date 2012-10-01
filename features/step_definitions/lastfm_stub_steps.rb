@@ -14,6 +14,6 @@ Given /^there is a last fm user "([^"]*)" currently listening to "([^"]*)" by "(
   method = 'user.getrecenttracks'
   api_key = 'b25b959554ed76058ac220b7b2e0a026'
   stub_request(:get, uri)
-    .with( query: { method: method, user: user, format: 'json', api_key: api_key } )
-    .to_return( body: json, status: 200, headers: { "Content-type" => 'application/json' } )
+    .with( :query => { :method => method, :user => user, :format => 'json', :api_key => api_key } )
+    .to_return( :body => json, :status => 200, :headers => { "Content-type" => 'application/json' } )
 end

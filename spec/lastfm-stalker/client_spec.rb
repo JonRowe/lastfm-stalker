@@ -37,8 +37,8 @@ module Lastfm::Stalker
       subject { client.fetch_current_track_for user }
 
       it "should use HTTParty to get the most recent tracks for the user" do
-        query = hash_including format: 'json', api_key: client.api_key, method: 'user.getrecenttracks', user: user
-        Client.should_receive(:get).with(Client.base_uri,query: query).and_return(http_party_response)
+        query = hash_including :format => 'json', :api_key => client.api_key, :method => 'user.getrecenttracks', :user => user
+        Client.should_receive(:get).with(Client.base_uri,:query => query).and_return(http_party_response)
         subject
       end
       it "should get the parsed_response from the http_party_response" do
@@ -57,7 +57,7 @@ module Lastfm::Stalker
       let(:client) { Client.new }
       let(:artist) { "The Band" }
       let(:name)   { "Song 2" }
-      let(:track)  { mock "track", artist: artist, name: name }
+      let(:track)  { mock "track", :artist => artist, :name => name }
 
       before do
         client.set_user user

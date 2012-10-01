@@ -16,7 +16,7 @@ module Lastfm
       end
 
       def fetch_current_track_for(user)
-        response = Client.get self.class.base_uri, query(user: user, method: 'user.getrecenttracks')
+        response = Client.get self.class.base_uri, query(:user => user, :method => 'user.getrecenttracks')
         parsed_response = response.parsed_response
         Track.from_response parsed_response["recenttracks"]["track"].first
       end
@@ -28,7 +28,7 @@ module Lastfm
 
       private
         def query(params)
-          { query: { format: 'json', api_key: self.api_key }.merge(params) }
+          { :query => { :format => 'json', :api_key => self.api_key }.merge(params) }
         end
     end
   end
