@@ -1,5 +1,3 @@
-require 'ruby_debug'
-
 require 'httparty'
 require 'webmock/cucumber'
 

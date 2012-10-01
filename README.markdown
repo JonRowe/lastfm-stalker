@@ -1,3 +1,4 @@
+[![Build Status](https://secure.travis-ci.org/JonRowe/lastfm-stalker.png)](http://travis-ci.org/JonRowe/lastfm-stalker)
 LastFM Stalker
 ==============
 
