@@ -29,27 +29,27 @@ module Lastfm::Stalker
       let(:parsed_response) { { "recenttracks" => { "track" => [track_response] } } }
 
       before do
-        Client.stub(:get).and_return(http_party_response)
-        http_party_response.stub(:parsed_response).and_return(parsed_response)
-        Track.stub(:from_response).and_return(track)
+        allow(Client).to receive(:get) { http_party_response }
+        allow(http_party_response).to receive(:parsed_response) { parsed_response }
+        allow(Track).to receive(:from_response) { track }
       end
 
       subject { client.fetch_current_track_for user }
 
       it "should use HTTParty to get the most recent tracks for the user" do
         query = hash_including :format => 'json', :api_key => client.api_key, :method => 'user.getrecenttracks', :user => user
-        Client.should_receive(:get).with(Client.base_uri,:query => query).and_return(http_party_response)
+        expect(Client).to receive(:get).with(Client.base_uri,:query => query) { http_party_response }
         subject
       end
       it "should get the parsed_response from the http_party_response" do
-        http_party_response.should_receive(:parsed_response).and_return(parsed_response)
+        expect(http_party_response).to receive(:parsed_response) { parsed_response }
         subject
       end
       it "should parse the track" do
-        Track.should_receive(:from_response).with(track_response).and_return(track)
+        expect(Track).to receive(:from_response).with(track_response) { track }
         subject
       end
-      it { should == track }
+      it { is_expected.to eq track }
     end
 
     describe "now_playing" do
@@ -61,30 +61,30 @@ module Lastfm::Stalker
 
       before do
         client.set_user user
-        client.stub(:fetch_current_track_for).and_return(track)
+        allow(client).to receive(:fetch_current_track_for) { track }
       end
 
       subject { client.now_playing }
 
       it "should get the user you wish to stalk" do
-        client.should_receive(:user).twice.and_return(user)
+        expect(client).to receive(:user).twice { user }
         subject
       end
       it "should get the current track for user" do
-        client.should_receive(:fetch_current_track_for).with(user).and_return(track)
+        expect(client).to receive(:fetch_current_track_for).with(user) { track }
         subject
       end
       it "should get the track artist" do
-        track.should_receive(:artist).and_return(artist)
+        expect(track).to receive(:artist) { artist }
         subject
       end
       it "should get the track name" do
-        track.should_receive(:name).and_return(name)
+        expect(track).to receive(:name) { name }
         subject
       end
-      it { should include user }
-      it { should include artist }
-      it { should include name }
+      it { is_expected.to include user }
+      it { is_expected.to include artist }
+      it { is_expected.to include name }
     end
 
   end

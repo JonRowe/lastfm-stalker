@@ -17,6 +17,6 @@ describe Track do
     its(:name) { should == track }
   end
 
-  it { should respond_to :artist }
-  it { should respond_to :name }
+  it { is_expected.to respond_to :artist }
+  it { is_expected.to respond_to :name }
 end
