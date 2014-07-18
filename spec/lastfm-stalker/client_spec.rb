@@ -4,20 +4,17 @@ module Lastfm::Stalker
   describe Client do
 
     describe "class attributes" do
-      subject { Client }
-
-      its(:base_uri) { should == "http://ws.audioscrobbler.com/2.0" }
+      specify { expect(Client.base_uri).to eq "http://ws.audioscrobbler.com/2.0" }
     end
 
-    its(:'class.ancestors') { should include HTTParty }
-    its(:api_key) { should == 'b25b959554ed76058ac220b7b2e0a026' }
+    specify { expect(Client.new.api_key).to eq 'b25b959554ed76058ac220b7b2e0a026' }
 
     describe "set_user" do
       let(:user) { "a_user" }
 
-      subject { Client.new.tap { |c| c.set_user user } }
+      let(:client) { Client.new.tap { |c| c.set_user user } }
 
-      its(:user) { should == user }
+      specify { expect(client.user).to eq user }
     end
 
     describe "fetch_current_track_for_user" do

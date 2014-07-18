@@ -11,10 +11,10 @@ describe Track do
       }
     end
 
-    subject { Track.from_response response }
+    let(:track_from_response) { Track.from_response response }
 
-    its(:artist) { should == artist }
-    its(:name) { should == track }
+    specify { expect(track_from_response.artist).to eq artist }
+    specify { expect(track_from_response.name).to eq track }
   end
 
   it { is_expected.to respond_to :artist }
