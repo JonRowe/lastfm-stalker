@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Lastfm::Stalker
   describe CommandLine do
-    let!(:client) { mock "client" }
+    let!(:client) { double "client" }
     let(:args) { ['--user','a_user'] }
     let(:now_playing) { 'a_user is listening to blahblah by the yackety yacks' }
 

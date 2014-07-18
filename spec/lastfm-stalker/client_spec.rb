@@ -23,9 +23,9 @@ module Lastfm::Stalker
     describe "fetch_current_track_for_user" do
       let(:user) { "a_user" }
       let(:client) { Client.new }
-      let(:http_party_response) { mock "response" }
-      let(:track_response) { mock "track response" }
-      let(:track) { mock "track" }
+      let(:http_party_response) { double "response" }
+      let(:track_response) { double "track response" }
+      let(:track) { double "track" }
       let(:parsed_response) { { "recenttracks" => { "track" => [track_response] } } }
 
       before do
@@ -57,7 +57,7 @@ module Lastfm::Stalker
       let(:client) { Client.new }
       let(:artist) { "The Band" }
       let(:name)   { "Song 2" }
-      let(:track)  { mock "track", :artist => artist, :name => name }
+      let(:track)  { double "track", :artist => artist, :name => name }
 
       before do
         client.set_user user
